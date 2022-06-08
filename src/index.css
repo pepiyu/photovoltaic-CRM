@@ -1,0 +1,151 @@
+footer p {
+  font-size: 10px;
+}
+
+footer {
+  padding-left: 5em;
+  padding-right: 5em;
+}
+
+.form-tweet {
+  display: flex;
+  padding: 0em 0em 2em 0em
+}
+
+.user {
+font-size: 30px;
+display: flex;
+align-items: right;
+
+}
+
+.card {
+margin: 4px;
+}
+
+#submit-btn {
+  background-color: #000;
+  border-radius: 3rem;
+  color: #fff;
+  display: inline-block;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  border: 1px solid transparent;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.btn {
+  background-color: #000;
+  border-radius: 3rem;
+  color: #fff;
+  display: inline-block;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  border: 1px solid transparent;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+#signin-btn {
+  background-color: #fff;
+  border-radius: 3rem;
+  color: #000;
+  display: inline-block;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  border: 1px solid transparent;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.btn:hover {
+  color: #fff;
+}
+
+.like-btn {
+  align-items: right;
+}
+
+
+a { 
+  cursor: pointer; 
+
+}
+
+@media (min-width: 992px){
+
+  .card {
+    margin: 7px;
+  }
+
+}
+
+.navbar {
+  padding: 10px 20px;
+  justify-content: space-between;
+}
+
+
+@media (min-width: 992px){
+  .navbar {
+      padding: 10px;
+  }
+
+  .navbar-expand-lg .navbar-collapse {
+      justify-content: right;
+  }
+}
+
+.profile {
+  text-align: center;
+  background-color: #fff;
+  z-index: 1;
+  padding: 0em 0em 3em 0em;
+  width: 100%;
+}
+
+#signin-btn {
+  margin: 1.5em 0em;
+  background-color: #000;
+  border-radius: 3rem;
+  color: #fff;
+  display: inline-block;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  border: 1px solid transparent;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}

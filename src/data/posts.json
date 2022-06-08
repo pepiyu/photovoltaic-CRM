@@ -1,0 +1,29 @@
+[
+    {
+        "id": 0,
+        "likes": 50,
+        "description": "It's easy for a fool to lose his/her money.",
+        "user": "@pepi",
+        "time": "1 min ago",
+        "img": "https://source.unsplash.com/random/800x800",
+        "comments": ["Some quick example text"]
+    },
+    {
+        "id": 1,
+        "likes": 99,
+        "description": "Some quick example text to build on the card title and make up the bulk of the cards content.",
+        "user": "@pepa",
+        "time": "10 min ago",
+        "img": "https://source.unsplash.com/random/800x800",
+        "comments": ["Lorem ipsum dolor sit amet.","A snail can sleep for three years at a time.","Octopuses have three hearts.","Polar bears have black skin and see-through fur."]
+    },
+    {
+        "id": 2,
+        "likes": 100,
+        "description": "A cup of joe is an American nickname for a cup of coffee.",
+        "user": "@lacasitos",
+        "time": "10 min ago",
+        "img": "https://source.unsplash.com/random/800x800",
+        "comments": [" blue whale weighs as much as three elephants and is as long as three Greyhound buses."]
+    }
+]
