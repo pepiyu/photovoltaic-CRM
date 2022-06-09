@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import { useNavigate } from 'react-router-dom'
+import useSetUser from '../hooks/useSetUser'
 import { setStorageToken } from '../services/helpers'
 import Auth from '../services/ServiceAuth'
 import Account from '../services/ServiceAccount'
@@ -10,6 +11,7 @@ function Login(props) {
     const navigate = useNavigate()
     const {onLoginComplete, setAccount} = props
     const [error, setError] = useState(false)
+    const setUser = useSetUser()
 
 
     const onSubmit = (e) => {
@@ -25,7 +27,7 @@ function Login(props) {
             Auth.loginUser(body)
             .then((token) => {
 
-                setStorageToken(token)
+                setUser(token)
                 Account.getAccount().then((accounts) =>{ 
                     setAccount(accounts)
                     console.log(accounts);
