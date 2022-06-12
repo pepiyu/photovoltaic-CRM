@@ -1,25 +1,26 @@
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from "react-router-dom";
-
+import Contact from "../../../services/ServiceContact"
 
 function AccountCard(props) {
+
+    const [contact, setContact] = useState({})
 
     const {
         image, 
         title, 
         description,  
         createdAt, 
-        id, 
-        setAccounts
+        id,
+        contactId,
     } = props
 
-    const [newComment, saveNewComment] = useState('')
-
-    const onChange = e=>{
-        saveNewComment(e.target.value)
-
-        }
+    useEffect(() => {
+        Contact.getContactDetail(contactId).then(contact => {
+            setContact(contact)
+        })
+    }, [])
 
 
     return (
@@ -30,10 +31,13 @@ function AccountCard(props) {
                 <div className="card-body">
                     <p className="card-text">{<Link to={`/account-detail/${id}`}>{title}</Link>}</p>
                     <div className="d-flex justify-content-between">
-                    <p className="card-text text-muted">{createdAt}</p>
+                        <p className="card-text text-muted">{createdAt}</p>
                     
                     </div>
-                    <p className="card-text">{description}</p>
+                    <p>{contact.full_name}</p>
+                    <p>{contact.phone}</p>
+                    <p>{contact.email}</p>
+                    <p>{description}</p>
                 </div>
             </div>
         </div>

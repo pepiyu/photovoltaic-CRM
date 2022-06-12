@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from "react-router-dom";
 import Opportunities from '../../services/ServiceOpportunity'
 import Account from '../../services/ServiceAccount'
+import Opportunity from './Opportunity'
 
 const AccountDetail = () => {
 
@@ -32,35 +33,30 @@ const AccountDetail = () => {
     return (
 
         <div>
-            <h2>Account Details</h2>
-            <img src={account.image} class="img-fluid" alt="..."/>
+            <h2>{account.title}</h2>
+            <img src={account.image} class="card-img-top" style={{height: "400px"}} alt="..."/>
             <p>{account.title}</p>
             <p>{account.description}</p>
             <p>{account.address}</p>
 
-            <table class="table">
-                <tr>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                </tr>
 
                 {opportunities.map((opportunity) =>
+
+                (
+
+                    <Opportunity
+                        title={opportunity.title}
+                        description={opportunity.description}
+                        closingDate={opportunity.closing_date}
+                        probability={opportunity.probability}
+                        amount={opportunity.amount}
+                        createdAt={opportunity.createdAt}
+                    />
+                )
+
                 
-                <tr>
-                    <td>{opportunity.title}</td>
-                    <td>{opportunity.description}</td>
-                    <td>{opportunity.closing_date}</td>
-                    <td>{opportunity.probability}</td>
-                    <td>{opportunity.amount}</td>
-                    <td>{opportunity.createdAt}</td>
-                </tr>
                 )}
                 
-            </table>
 
         </div>
 

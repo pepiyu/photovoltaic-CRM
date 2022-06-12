@@ -13,7 +13,7 @@ const loginUser = ({ email, password }) =>
   });
 
 const getUserDetail = (id) =>
-  Request(`/accounts/${id}`).then((res) => res.data);
+  Request(`/users/detail/${id}`).then((res) => res.data);
 
 
 const logout = () => {

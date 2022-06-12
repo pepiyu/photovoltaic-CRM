@@ -26,6 +26,11 @@ function PanelAccounts() {
 
     return (
         <>
+        <div className="text-center pb-3">
+
+            <h2>Accounts</h2>
+        </div>
+
 
             <SearchBar
             search={search}
@@ -47,6 +52,7 @@ function PanelAccounts() {
                                 createdAt={searchedAccounts.createdAt}
                                 image={searchedAccounts.image}
                                 address={searchedAccounts.address}
+                                contactId={searchedAccounts.contact_id}
                                 setAccounts={setAccounts}
                                 id={searchedAccounts.id}
                             />

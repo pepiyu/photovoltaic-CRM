@@ -10,6 +10,7 @@ const useSetUser = () => {
     const user = decodeToken(token);
     setStorageToken(token);
     setStorageUser(user);
+    console.log(user.sub);
     setUser(user.sub);
   };
 };

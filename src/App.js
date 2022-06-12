@@ -17,8 +17,6 @@ function App () {
 
 
   const [toggleOpen, setToggleOpen] = useState(false)
-  const [navOpen, setNavOpen] = useState(false)
-  const [profile, setProfile] = useState({})
   const[loggedIn, setLoggedIn] = useState(false)
 
   const navigate = useNavigate()
@@ -29,7 +27,6 @@ function App () {
     
     if(token){
       setLoggedIn(true)
-
       navigate('/')
     }else{
       navigate('/login')
@@ -60,25 +57,25 @@ function App () {
       <Navbar
         onProfileClick={()=>onProfileClick()}
         toggleOpen={setToggleOpen}
-        navOpen={setNavOpen}
         loggedIn={loggedIn}
       />
 
       
       <main className="container py-5">
 
-      <Routes>
-        <Route path="/login" element={<Login setLoggedIn={setLoggedIn}/>}/>
+        <Routes>
+          
+          <Route path="/login" element={<Login setLoggedIn={setLoggedIn}/>}/>
 
-        <Route path="/profile" element={<Profile profile={profile} logout={logout}/>}/>
+          <Route path="/profile" element={<Profile logout={logout} onProfileClick={onProfileClick}/>}/>
 
-        <Route path="/" element={<Home/>}/>
-        
-        <Route path="/account-detail/:id" element={<AccountDetail />}/>
+          <Route path="/" element={<Home/>}/>
+          
+          <Route path="/account-detail/:id" element={<AccountDetail />}/>
 
 
 
-    </Routes>
+      </Routes>
       </main>
 
     </div>

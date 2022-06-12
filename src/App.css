@@ -13,3 +13,7 @@ a:link {
   a:active {
     text-decoration: underline;
   }
+
+  p {
+    margin-bottom: 0;
+  }
