@@ -72,7 +72,6 @@ function Login({setLoggedIn}) {
                             className='form-control'
                             placeholder="email"
                             name="email"
-                            defaultValue="yessicabao@gmail.com"
                             />
                             
                         </div>
@@ -81,7 +80,6 @@ function Login({setLoggedIn}) {
                             className='form-control'
                             placeholder="password"
                             name="password"
-                            defaultValue="123456789"
                             />
 
                         </div>
