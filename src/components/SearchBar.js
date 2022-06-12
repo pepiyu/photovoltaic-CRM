@@ -1,3 +1,5 @@
+import React from 'react'
+
 function SearchBar({search, setSearch, resetFilter, setResetFilter}) {
 
     if (resetFilter) {

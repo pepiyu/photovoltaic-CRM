@@ -6,10 +6,9 @@ import { setStorageToken } from '../services/helpers'
 import Auth from '../services/ServiceAuth'
 import Account from '../services/ServiceAccount'
 
-function Login(props) {
+function Login({setLoggedIn}) {
 
     const navigate = useNavigate()
-    const {onLoginComplete, setAccount} = props
     const [error, setError] = useState(false)
     const setUser = useSetUser()
 
@@ -26,9 +25,16 @@ function Login(props) {
 
             Auth.loginUser(body)
             .then((token) => {
+                if(!token){
+                    navigate('/login')
+                    
+                } else {
+                    
+                    setUser(token)
+                    setLoggedIn(true)
+                    navigate('/')
+                }
 
-                setUser(token)
-                navigate('/')
                 
             })
             .catch(err => {

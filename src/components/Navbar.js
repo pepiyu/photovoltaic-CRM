@@ -1,5 +1,7 @@
+import React from 'react'
+import { Link } from 'react-router-dom'
 
-function Navbar ({onProfileClick, onLogoClick, loggedIn}) {
+function Navbar ({onProfileClick, loggedIn}) {
 
     const profileIcon = () => {
         return (
@@ -11,7 +13,7 @@ function Navbar ({onProfileClick, onLogoClick, loggedIn}) {
 
     return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <a className="navbar-brand" onClick={()=>{onLogoClick()}}>SocialMedia</a>
+        <Link to="/">CRM</Link>
 
             {profileIcon()}
         

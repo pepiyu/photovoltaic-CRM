@@ -12,6 +12,10 @@ const loginUser = ({ email, password }) =>
     return false;
   });
 
+const getUserDetail = (id) =>
+  Request(`/accounts/${id}`).then((res) => res.data);
+
+
 const logout = () => {
   if (typeof window !== 'undefined') {
     window.localStorage.removeItem(USER_KEY);
@@ -22,5 +26,6 @@ const logout = () => {
 
 export default {
     loginUser,
-  logout,
+    getUserDetail,
+    logout,
 };

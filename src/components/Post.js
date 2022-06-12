@@ -1,13 +1,21 @@
 
 import Comments from './Comments.js'
 import React, { useState } from 'react'
-import {createComment, giveLike, getPosts} from '../services/API.js'
+import {createComment, getPosts} from '../services/API.js'
 
 
 
 function Post(props) {
 
-    const {image, author, text, createdAt, comments, likes, id, setPosts} = props
+    const {
+        image, 
+        title, 
+        text, 
+        createdAt, 
+        comments, 
+        likes, 
+        id, 
+        setAccounts} = props
 
     const [newComment, saveNewComment] = useState('')
 
@@ -28,7 +36,7 @@ function Post(props) {
             createComment(id, body).then(response => {
                 getPosts()
                 .then(response => {
-                    setPosts(response)
+                    setAccounts(response)
                 })
             }
             )
@@ -41,20 +49,6 @@ function Post(props) {
 
     }
 
-    function addLike(id) {
-
-        giveLike(id)
-          .then(
-            getPosts()
-            .then(response => {
-                setPosts(response)
-            })
-            )
-            .catch(err => {
-                console.log(err);
-            })
-    }
-
 
     return (
 
@@ -64,23 +58,10 @@ function Post(props) {
                 <div className="card-body">
                     <div className="d-flex justify-content-between">
                     <p className="card-text text-muted">{createdAt}</p>
-                    <a className="btn" onClick={() => {addLike(id)}} name="likes"><i className="fas fa-heart" style={{textAlign: 'right'}}></i> {likes} likes</a>
                     
                     </div>
-                    <p className="card-text fw-bold">{author}</p>
                     <p className="card-text">{text}</p>
-                    <a className="text-muted" name="comments"><i className="fas fa-comments"></i> comments({comments.length})</a>
                     <div name="comment-block" className="my-2">
-                        <div name="comments-list" className="my-2">
-
-
-                        {comments.length > 0 ? (
-                            comments.map((comment, index) =>
-                            <Comments key={index} author={comment.user.name} comment={comment.text}/>
-                        )) : null}
-                        
-
-                        </div>
                         <div name="comment-text-area" className="my-2">
 
                             <form onSubmit={onSubmit}>

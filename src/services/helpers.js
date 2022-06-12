@@ -15,6 +15,12 @@ const setStorageUser = (user) => {
   return user;
 };
 
+const removeStorageUser = () => {
+  if (typeof window !== 'undefined')
+    window.localStorage.removeItem(USER_KEY);
+  return null;
+};
+
 const getStorageToken = () => {
   if (typeof window !== 'undefined')
     return window.localStorage.getItem(TOKEN_KEY);
@@ -26,11 +32,20 @@ const setStorageToken = (token) => {
     window.localStorage.setItem(TOKEN_KEY, token);
 };
 
+
+const removeStorageToken = () => {
+  if (typeof window !== 'undefined')
+    window.localStorage.removeItem(TOKEN_KEY);
+  return null;
+};
+
 export {
   USER_KEY,
   TOKEN_KEY,
   getStorageUser,
   setStorageUser,
+  removeStorageUser,
   getStorageToken,
   setStorageToken,
+  removeStorageToken,
 };

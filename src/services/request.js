@@ -2,7 +2,7 @@ import axios from 'axios';
 import { getStorageToken } from './helpers';
 
 const API = 'https://express-crm.herokuapp.com/api';
-//const API = 'http:/localhost:8000/api';
+//const API = 'http://localhost:8000/api';
 // 'http://localhost:8080';
 
 const Request = (url, { method = 'GET', data = {} } = {}) => {
@@ -13,6 +13,7 @@ const Request = (url, { method = 'GET', data = {} } = {}) => {
     method,
     url: API + url,
     withCredentials: true,
+    credentials: 'include',
     headers: {
       'Content-Type': 'application/json',
       ...auth,

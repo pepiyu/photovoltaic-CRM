@@ -1,5 +1,5 @@
 import SearchBar from './components/SearchBar.js';
-import PostsList from './PostsList.js';
+import PanelAccounts from './components/PanelAccounts';
 import React, { useState } from 'react';
 
 function Home() {
@@ -12,7 +12,7 @@ function Home() {
         <>
             <SearchBar/>
             
-            <PostsList 
+            <PanelAccounts 
             searchValue={searchValue}/>
         </>
     )
