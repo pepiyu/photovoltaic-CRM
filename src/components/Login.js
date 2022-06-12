@@ -28,13 +28,8 @@ function Login(props) {
             .then((token) => {
 
                 setUser(token)
-                Account.getAccount().then((accounts) =>{ 
-                    setAccount(accounts)
-                    console.log(accounts);
-                
-                })
                 navigate('/')
-
+                
             })
             .catch(err => {
                 if (err.response.status === 401) {

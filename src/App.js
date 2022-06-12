@@ -28,14 +28,14 @@ function App () {
 
   useEffect(() => {
 
-    const id = localStorage.getItem('id')
+    const token = localStorage.getItem('token')
     
-    if(id){
-      getProfileByID(id).then(response =>{
+    if(token){
+/*       getProfileByID(id).then(response =>{
         setStorageToken(response)
-        //onLoginComplete(response)
-          navigate('/')
-        })
+        onLoginComplete(response)
+      }) */
+      navigate('/')
     }else{
       navigate('/login')
     }

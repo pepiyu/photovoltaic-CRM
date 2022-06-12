@@ -1,9 +1,21 @@
 import Post from './Post.js'
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import SearchBar from '../components/SearchBar.js';
+import Account from '../services/ServiceAccount'
 
 
 function PostsList(props) {
+
+    const [accounts, setAccounts] = useState([])
+
+    useEffect(() => {
+        Account.getAccount().then((accounts) =>{ 
+            setAccounts(accounts)
+            console.log(accounts);
+        
+        })
+
+    }, [])
 
     const [search, setSearch] = useState("")
 

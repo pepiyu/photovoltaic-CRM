@@ -12,6 +12,7 @@ const Request = (url, { method = 'GET', data = {} } = {}) => {
     validateStatus: () => true,
     method,
     url: API + url,
+    withCredentials: true,
     headers: {
       'Content-Type': 'application/json',
       ...auth,
