@@ -2,8 +2,8 @@ import AccountCard from './AccountCard'
 import React, { useState, useEffect } from 'react';
 import SearchBar from '../SearchBar';
 import Account from '../../services/ServiceAccount'
-  
-
+import {Container, Header, Cards, ButtonDiv, Grid, AccountForm } from './styles'
+import { Button } from '../UI/Form/styles'
 function PanelAccounts() {
 
     const [accounts, setAccounts] = useState([])
@@ -25,27 +25,35 @@ function PanelAccounts() {
 
 
     return (
-        <>
-        <div className="text-center pb-3">
+        <Container>
+            <Header>
+                <Grid>
+                    <h2>Cuentas</h2>
+                    <ButtonDiv> 
+                        <Button>Crear cuenta nueva</Button>
 
-            <h2>Accounts</h2>
-        </div>
+                    </ButtonDiv>
+
+                </Grid>
 
 
-            <SearchBar
-            search={search}
-            setSearch={setSearch}
-            resetFilter={resetFilter}
-            setResetFilter={setResetFilter}
-            />
+                <SearchBar
+                search={search}
+                setSearch={setSearch}
+                resetFilter={resetFilter}
+                setResetFilter={setResetFilter}
+                />
 
-            {accounts.length > 0 ?
-                (
-                <>
-                    {filteredAccount.map((searchedAccounts, index) => 
-                    
+            </Header>
+
+            <Cards>
+                {accounts.length > 0 ?
                     (
+                    <>
+                        {filteredAccount.map((searchedAccounts, index) => 
                         
+                        (
+                            
                             <AccountCard
                                 key={index}
                                 title={searchedAccounts.title}
@@ -57,16 +65,20 @@ function PanelAccounts() {
                                 id={searchedAccounts.id}
                             />
 
-                    )
+                        )
 
-                    )}
-                </>
+                        )}
+                    </>
+                    
+                    )  : 'Loading...'
                 
-                )  : 'Loading...'
-            
-            }
+                }
+            </Cards>
+
+            <AccountForm/>
+
         
-        </>
+        </Container>
     )
         
 }

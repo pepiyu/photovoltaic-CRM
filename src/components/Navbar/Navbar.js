@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { Nav, Logo, Main } from './styles'
 
 function Navbar ({onProfileClick, loggedIn}) {
 
@@ -12,12 +13,18 @@ function Navbar ({onProfileClick, loggedIn}) {
     }
 
     return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <Link to="/">CRM</Link>
+    <Nav>
+        <Main>
+            <Link to="/">
+                <Logo>CRM</Logo>
+            </Link>
 
-            {profileIcon()}
-        
-    </nav>
+                {profileIcon()}
+            
+
+
+        </Main>
+    </Nav>
     )
 }
 

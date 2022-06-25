@@ -1,5 +1,6 @@
 import React from 'react'
-
+import RowInfo from '../../UI/RowInfo'
+import { OpItem } from './styles'
 const Opportunity = (props) => {
 
     const {
@@ -13,16 +14,15 @@ const Opportunity = (props) => {
 
     return (
 
-        <div>
-            <h4>{title}</h4>
-            <h5>{description}</h5>
-            <p>{closingDate}</p>
-            <p>{probability}</p>
-            <p>{amount}</p>
-            <p>{created}</p>
+        <OpItem>
+            <h3>{title}</h3>
+            <RowInfo text= 'description' description= {description}/>
+            <RowInfo text= 'Fecha cierre' description= {closingDate}/>
+            <RowInfo text= 'Probabilidad' description= {probability+' %'}/>
+            <RowInfo text= 'amount' description= {amount+' €'}/>
+            <RowInfo text= 'Creado' description= {created}/>
 
-
-        </div>
+        </OpItem>
 
     )
 }

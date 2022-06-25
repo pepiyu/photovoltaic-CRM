@@ -2,6 +2,9 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from "react-router-dom";
 import Contact from "../../../services/ServiceContact"
+import { Card, Img, CardBody } from './styles'
+import { dateFormatter } from '../../../utils/date'
+import RowInfo from '../../UI/RowInfo'
 
 function AccountCard(props) {
 
@@ -24,23 +27,18 @@ function AccountCard(props) {
 
 
     return (
+            <Card>
+                <Img src={image}/>
+                <CardBody>
+                    <h2 className="card-text">{<Link to={`/account-detail/${id}`}>{title}</Link>}</h2>
 
-        <div className="col-12 col-md-6 col-lg-4">
-            <div className="card">
-            <img src={image} className="card-img-top" alt="..."/>
-                <div className="card-body">
-                    <p className="card-text">{<Link to={`/account-detail/${id}`}>{title}</Link>}</p>
-                    <div className="d-flex justify-content-between">
-                        <p className="card-text text-muted">{createdAt}</p>
-                    
-                    </div>
-                    <p>{contact.full_name}</p>
-                    <p>{contact.phone}</p>
-                    <p>{contact.email}</p>
-                    <p>{description}</p>
-                </div>
-            </div>
-        </div>
+                    <RowInfo text= 'Creado' description={dateFormatter(createdAt)}/>
+                    <RowInfo text= 'Contacto' description= {contact.full_name}/>
+                    <RowInfo text= 'Teléfono' description= {contact.phone}/>
+                    <RowInfo text= 'Email' description= {contact.email}/>
+                    <RowInfo text= 'Descripción' description= {description}/>
+                </CardBody>
+            </Card>
 
     )
 }
