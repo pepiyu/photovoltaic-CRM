@@ -13,7 +13,8 @@ export const Img = styled.img`
     object-fit: cover;
     width: 100%;
     height: 200px;
-    ${({src}) => `src: ${src}`}
+    ${({ src }) =>
+    src ? `background-image: url(${src});` : 'background-color: gray;'}
     `
 
 export const CardBody = styled.div`
@@ -34,5 +35,11 @@ export const CardBody = styled.div`
         margin: 0
     }
 
+`
+
+export const Row = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 `
 

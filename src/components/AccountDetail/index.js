@@ -7,9 +7,34 @@ import Contact from '../../services/ServiceContact'
 import Opportunity from './Opportunity'
 import Activity from './Activity'
 import ActivityForm from './ActivityForm';
-import { Main, Header, ImgSpan, Panel1, Panel2, ActivityPanel } from  './styles'
+import { Main, Header, ImgSpan, Panel1, Panel2, ActivityPanel, Row } from  './styles'
 import RowInfo from '../UI/RowInfo'
 import { dateFormatter } from '../../utils/date'
+import CreateNewForm from '../UI/CreateNewForm'
+import AddIcon from '@mui/icons-material/Add';
+import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
+
+const TextFieldEls = [
+    {label: 'Titulo', name: 'title', required: true},
+    {label: 'Descripción', name: 'description', required: true},
+    {label: 'Fecha de cierre', name: 'closing_date', required: true, type: 'date'},
+    {label: 'Probabilidad', name: 'probability', required: true, type: 'number'},
+    {label: 'Monto', name: 'amount', required: true, type: 'number'},
+
+]
+
+const InputFileEls = [
+    /* {label: 'Presupuesto', name: 'quotation', required: false}, */
+]
+
+const SelectInputEls = [
+]
+
+
+
+
+
+
 const AccountDetail = () => {
 
     const [account, setAccount] = useState({})
@@ -59,6 +84,36 @@ const AccountDetail = () => {
 
     }, [])
 
+    const OpOnSubmit = (data) => {
+        console.log(data)
+
+        let dataX = {...data, account_id: account.id, oportunity_type_id: '62bdce7ad1070bd75ecbf0ed'}
+        Opportunities.create(dataX).then(() => {
+            let withNew = [...opportunities];
+            withNew.push(dataX)
+            setOpportunities(withNew)
+        })
+    
+    }
+
+    const deleteOportunity = (id) => {
+        Opportunities.remove(id).then(() => {
+            let without = opportunities.filter((opportunities) => { return opportunities.id !== id})
+            setOpportunities(without)
+        }
+        ).catch((error) => {
+            console.error(error)
+        }
+        )
+    }
+
+    const infoBasica = [
+        {label: 'Descripción', value: account.description},
+        {label: 'Fecha de creación', value: dateFormatter(account.created_at)},
+        {label: 'Fecha de actualización', value: dateFormatter(account.updated_at)},
+        {label: 'Address', value: account.address}
+    ]
+
     return (
 
         <Main>
@@ -72,6 +127,11 @@ const AccountDetail = () => {
 
                 <RowInfo text= 'Descripción' description = {account.description}/>
                 <RowInfo text= 'Address' description = {account.address}/>
+                <RowInfo text= 'CUPS' description = {account.cups_number}/>
+                <RowInfo text= 'Consumo Anual' description = {account.consumption_yearly}/>
+                <RowInfo text= 'CIE' description = {<InsertDriveFileIcon/>}/>
+                <RowInfo text= 'Proyecto técnico' description = {<InsertDriveFileIcon/>}/>
+                <RowInfo text= 'Memoria técnica' description = {<InsertDriveFileIcon/>}/>
 
                 <h2> Contacto </h2>
 
@@ -79,12 +139,37 @@ const AccountDetail = () => {
                 <RowInfo text= 'Teléfono' description = {contact.phone}/>
                 <RowInfo text= 'Email' description = {contact.email}/>
 
+                <h2> Mapa </h2>
+                <div class="mapouter">
+                    <div class="gmap_canvas">
+                        <iframe width="100%" height="500" id="gmap_canvas" 
+                        src={`https://maps.google.com/maps?q=${encodeURIComponent(account.address)}&t=&z=13&ie=UTF8&iwloc=&output=embed`}
+                        frameborder="0" 
+                        scrolling="no" 
+                        marginheight="0" 
+                        marginwidth="0"
+                        ></iframe>
+                    </div>
+                </div>
+
             </Panel1>
 
             <Panel2>
-                <h2> Oportunidades </h2>
 
-                {opportunities.map((opportunity) =>
+                <Row>
+                    <h2> Oportunidades </h2>
+
+                    <CreateNewForm 
+                    titulo={<AddIcon/>}
+                    TextFieldEls={TextFieldEls}
+                    InputFileEls={InputFileEls}
+                    onSubmit={OpOnSubmit}
+                    />
+
+                </Row>
+
+
+                {opportunities.map((opportunity, i) =>
 
                 (
 
@@ -94,7 +179,10 @@ const AccountDetail = () => {
                         closingDate={dateFormatter(opportunity.closing_date)}
                         probability={opportunity.probability}
                         amount={opportunity.amount}
-                        createdAt={dateFormatter(opportunity.createdAt)}
+                        AddIcon={dateFormatter(opportunity.createdAt)}
+                        id={opportunity.id}
+                        key={i}
+                        deleteOportunity={() => deleteOportunity(opportunity.id)}
                     />
                 )
 

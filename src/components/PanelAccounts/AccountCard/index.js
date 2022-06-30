@@ -2,10 +2,10 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from "react-router-dom";
 import Contact from "../../../services/ServiceContact"
-import { Card, Img, CardBody } from './styles'
+import { Card, Img, CardBody, Row } from './styles'
 import { dateFormatter } from '../../../utils/date'
 import RowInfo from '../../UI/RowInfo'
-
+import BurgerIconDelete from '../../UI/BurgerIconDelete'
 function AccountCard(props) {
 
     const [contact, setContact] = useState({})
@@ -17,6 +17,7 @@ function AccountCard(props) {
         createdAt, 
         id,
         contactId,
+        deleteAccount,
     } = props
 
     useEffect(() => {
@@ -26,11 +27,17 @@ function AccountCard(props) {
     }, [])
 
 
+
     return (
             <Card>
                 <Img src={image}/>
                 <CardBody>
-                    <h2 className="card-text">{<Link to={`/account-detail/${id}`}>{title}</Link>}</h2>
+                    <Row>
+                        <h2 className="card-text">{<Link to={`/account-detail/${id}`}>{title}</Link>}</h2>
+
+                        <BurgerIconDelete deleteItem={() => deleteAccount(id)}/>
+                    </Row>
+
 
                     <RowInfo text= 'Creado' description={dateFormatter(createdAt)}/>
                     <RowInfo text= 'Contacto' description= {contact.full_name}/>

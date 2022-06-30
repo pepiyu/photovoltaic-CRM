@@ -21,14 +21,14 @@ function Home () {
 
   useEffect(() => {
 
-    const token = localStorage.getItem('token')
+/*     const token = localStorage.getItem('token')
     
     if(token){
       setLoggedIn(true)
       navigate('/')
     }else{
       navigate('/login')
-    }
+    } */
     
   }, [])
 

@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 const card = `
 
+    overflow: auto;
     border: 1px solid #b2b2b2;
     border-radius: 5px;
     height: auto;
@@ -51,5 +52,12 @@ export const ImgSpan = styled.span`
 ${({src}) => `background-image: url(${src});`}
 
 `
+
+export const Row = styled.div`
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    `
 
 
