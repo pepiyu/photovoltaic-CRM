@@ -2,14 +2,15 @@ import React, {useState, useEffect } from 'react';
 import AccountCard from './AccountCard'
 import SearchBar from '../SearchBar';
 import Account from '../../services/ServiceAccount'
-import {Container, Header, Cards, ButtonDiv, Grid, AccountForm } from './styles'
-
+import {Container, Header, Cards, ButtonDiv, Grid, AccountForm } from '../UI/Layout/styles'
+import Contact from '../../services/ServiceContact'
 import CreateNewForm from '../UI/CreateNewForm';
 
 
 function PanelAccounts() {
 
     const [accounts, setAccounts] = useState([])
+    const [contacts, setContacts] = useState([])
     const [resetFilter, setResetFilter] = useState(false)
     const [search, setSearch] = useState("")
 
@@ -18,6 +19,9 @@ function PanelAccounts() {
         Account.getAccount().then((accounts) =>{ 
             setAccounts(accounts)
         
+        })
+        Contact.getContact().then((contacts) =>{
+            setContacts(contacts)
         })
 
     }, [])
@@ -42,10 +46,16 @@ function PanelAccounts() {
     ]
     
     const InputFileEls = [
-        {label: 'Imagen', name: 'img', required: false},
+        {label: 'Imagen', name: 'imagen', required: false},
         {label: 'Proyecto técnico', name: 'project_file', required: false},
         {label: 'Memoria técnica', name: 'memoria_file', required: false},
     ]
+    
+    const SelectFieldEls  = [
+        {label: 'Cliente', name: 'contact_id', required: true, options: contacts.map((contact) => {return {value: contact.id, label: contact.full_name}})},
+        {label: 'Tipo Autoconsumo', name: 'autoconsumo_type_id', required: true, options: contacts.map((contact) => {return {value: contact.id, label: contact.full_name}})},
+    ]
+
 
     const onSubmit = (data) => {
         Account.create(data).then((account) => {
@@ -75,27 +85,29 @@ function PanelAccounts() {
                     <h2>Cuentas</h2>
                     <ButtonDiv>
 
-                        <CreateNewForm 
+                        <CreateNewForm
+                        boton='Crear nueva cuenta'
                         titulo='Crear cuenta nueva'
                         TextFieldEls={TextFieldEls}
                         InputFileEls={InputFileEls}
+                        SelectFieldEls={SelectFieldEls}
                         onSubmit={onSubmit}
                         
                         />
 
-
+¡
 
                     </ButtonDiv>
 
+                    <SearchBar
+                    search={search}
+                    setSearch={setSearch}
+                    resetFilter={resetFilter}
+                    setResetFilter={setResetFilter}
+                    />
                 </Grid>
 
 
-                <SearchBar
-                search={search}
-                setSearch={setSearch}
-                resetFilter={resetFilter}
-                setResetFilter={setResetFilter}
-                />
 
             </Header>
 

@@ -5,7 +5,11 @@ import TextField from '@mui/material/TextField';
 import Input from '@mui/material/Input';
 import InputLabel from '@mui/material/InputLabel';
 import Box from '@mui/material/Box';
-const CreateNewForm = ({titulo, TextFieldEls, InputFileEls, onSubmit}) => {
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+
+const   CreateNewForm = ({boton, titulo, TextFieldEls, InputFileEls, SelectFieldEls, onSubmit}) => {
 
     const [state, setState] = useState({
         top: false,
@@ -14,10 +18,11 @@ const CreateNewForm = ({titulo, TextFieldEls, InputFileEls, onSubmit}) => {
         right: false,
       });
 
-    const inputNameTextFieldEls = TextFieldEls.reduce((previ, current) => ({...previ, [current.name]: current.type === 'number' ? 0 : ''}), {})
+    const inputNameTextFieldEls = TextFieldEls.reduce((previ, current) => ({...previ, [current.name]: ''}), {})
     const InputNameFileEls = InputFileEls.reduce((previ, current) => ({...previ, [current.name]: ''}), {})
+    const InputNameSelectEls = SelectFieldEls.reduce((previ, current) => ({...previ, [current.name]: ''}), {})
     
-    const [formInput, setFormInput] = useState({...inputNameTextFieldEls, ...InputNameFileEls })
+    const [formInput, setFormInput] = useState({...inputNameTextFieldEls, ...InputNameFileEls, ...InputNameSelectEls })
 
     console.log(formInput);
     
@@ -58,7 +63,8 @@ const CreateNewForm = ({titulo, TextFieldEls, InputFileEls, onSubmit}) => {
             {TextFieldEls.map(el => 
 
                 
-                <TextField 
+                <TextField
+                size="small"
                 label={el.label} 
                 name={el.name} 
                 fullWidth={true} 
@@ -73,11 +79,43 @@ const CreateNewForm = ({titulo, TextFieldEls, InputFileEls, onSubmit}) => {
                 
             )}
 
+            {SelectFieldEls.map(el => (
+
+            <>
+                <InputLabel>{el.label}</InputLabel>
+                <Select
+                    size="small"
+                    required={el.required}
+                    name={el.name}
+                    id="demo-simple-select"
+                    label={el.label}
+                    fullWidth={true}
+                    onChange={(e) => {
+                        setFormInput({...formInput, [e.target.name]: e.target.value})
+                    }}
+                    >
+                    {el.options.map(option => (
+                        <MenuItem value={option.value}>{option.label}</MenuItem>
+                    ))}
+                </Select>
+                
+
+            </>
+
+
+            )
+
+
+            )}
+
+
+
             {InputFileEls.map(el => (
 
                 <>
                     <InputLabel>{el.label}</InputLabel>
-                    <Input 
+                    <Input
+                    size="small"
                     label={el.label} 
                     name={el.name} 
                     type="file" 
@@ -95,7 +133,7 @@ const CreateNewForm = ({titulo, TextFieldEls, InputFileEls, onSubmit}) => {
 
 
             )}
-    
+
     
             <Button onClick={handleOnSubmit}> Enviar </Button>
           
@@ -112,7 +150,7 @@ const CreateNewForm = ({titulo, TextFieldEls, InputFileEls, onSubmit}) => {
 
         <>
         
-        <Button onClick={toggleDrawer(anchor, true)}>{titulo}</Button>
+        <Button onClick={toggleDrawer(anchor, true)}>{boton}</Button>
         <SwipeableDrawer
             anchor={anchor}
             open={state[anchor]}

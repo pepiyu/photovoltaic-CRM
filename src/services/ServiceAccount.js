@@ -1,12 +1,12 @@
 import Request from "./request";
-
+import RequestForm from "./requestForm";
 const getAccount = ()  => Request('/accounts').then((res) => res.data);
 
 const getAccountDetail = (id) =>
   Request(`/accounts/${id}`).then((res) => res.data);
 
   const create = (data) =>
-  Request(`/accounts`, {
+  RequestForm(`/accounts`, {
     method: "POST",
     data,
   }).then((res) => res.data);

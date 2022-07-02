@@ -3,6 +3,7 @@ import Profile from '../Profile.js';
 import PanelAccounts from '../PanelAccounts';
 import Login from '../Login.js'
 import AccountDetail from '../AccountDetail';
+import Contact from '../Contact';
 import React, { useState, useEffect } from 'react';
 import {
   Routes,
@@ -10,7 +11,9 @@ import {
   useNavigate,
 } from "react-router-dom";
 import Auth from '../../services/ServiceAuth'
-import { Main } from './styles'
+import { Main, Page } from './styles'
+import Sidebar from '../Sidebar'
+import Parametrizable from '../Parametrizable';
 function Home () {
 
 
@@ -51,11 +54,13 @@ function Home () {
 
 
     return (
-    <>
+    <Page>
       <Navbar
         onProfileClick={()=>onProfileClick()}
         loggedIn={loggedIn}
       />
+
+      <Sidebar/>
 
       <Main className="container">
         <Routes>
@@ -63,6 +68,8 @@ function Home () {
           <Route path="/profile" element={<Profile logout={logout} onProfileClick={onProfileClick}/>}/>
           <Route path="/" element={<PanelAccounts/>}/>
           <Route path="/account-detail/:id" element={<AccountDetail />}/>
+          <Route path="/contact" element={<Contact/>}/>
+          <Route path="/parametrizable" element={<Parametrizable />}/>
 
         </Routes>
 
@@ -71,7 +78,7 @@ function Home () {
       
 
 
-    </>
+    </Page>
 
     )
 }

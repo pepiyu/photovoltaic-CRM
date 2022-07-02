@@ -18,6 +18,7 @@ function AccountCard(props) {
         id,
         contactId,
         deleteAccount,
+        address,
     } = props
 
     useEffect(() => {
@@ -25,6 +26,12 @@ function AccountCard(props) {
             setContact(contact)
         })
     }, [])
+
+    const info = [
+        {label: 'Creado', value: dateFormatter(createdAt)},
+        {label: 'Dirección', value: address},
+        {label: 'Cliente', value: contact.full_name},
+    ]
 
 
 
@@ -38,12 +45,12 @@ function AccountCard(props) {
                         <BurgerIconDelete deleteItem={() => deleteAccount(id)}/>
                     </Row>
 
+                    {info.map((el) => (
 
-                    <RowInfo text= 'Creado' description={dateFormatter(createdAt)}/>
-                    <RowInfo text= 'Contacto' description= {contact.full_name}/>
-                    <RowInfo text= 'Teléfono' description= {contact.phone}/>
-                    <RowInfo text= 'Email' description= {contact.email}/>
-                    <RowInfo text= 'Descripción' description= {description}/>
+                        <RowInfo text= {el.label} description={el.value}/>
+
+                    ))}
+
                 </CardBody>
             </Card>
 

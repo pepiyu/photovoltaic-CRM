@@ -1,6 +1,6 @@
 import React from 'react'
 import RowInfo from '../../UI/RowInfo'
-import { AcItem } from './styles'
+import { AcItem, Comment, Date } from './styles'
 const Activity = (props) => {
 
     const {
@@ -8,18 +8,17 @@ const Activity = (props) => {
         comment,
         createdAt,
         updatedAt,
-        id,
+        key,
 
     } = props
 
 
     return (
-        <AcItem>
-            <RowInfo text= 'id' description= {id}/>
-            <RowInfo text= 'Creado' description= {createdAt}/>
-            <RowInfo text= 'Fecha cierre' description= {dueDate}/>
-            <RowInfo text= 'Comentario' description= {comment}/>
-            <RowInfo text= 'Fecha modificación' description= {updatedAt}/>
+        <AcItem >
+            <Date>{createdAt}</Date>
+            <Comment>
+                {comment}
+            </Comment>
 
         </AcItem>
 
