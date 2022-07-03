@@ -95,8 +95,6 @@ function PanelAccounts() {
                         
                         />
 
-¡
-
                     </ButtonDiv>
 
                     <SearchBar

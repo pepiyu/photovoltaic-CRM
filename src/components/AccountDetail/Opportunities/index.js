@@ -120,7 +120,7 @@ const Opportunities = ({key, accountId}) => {
                     amount={opportunity.amount}
                     AddIcon={dateFormatter(opportunity.createdAt)}
                     id={opportunity.id}
-                    opportunityType={opportunityTypes.find((opportunityType) => {return opportunityType.id === opportunity.oportunity_type_id}).oportunity_type_description}
+                    opportunityType={opportunityTypes.map((opportunityType) => opportunityType.id === opportunity.oportunity_type_id ? opportunityType.oportunity_type_description : null)}
                     stage={stages.map((stage) => stage.id === opportunity.stage_id ? stage.stage_description : null)}
                     deleteOportunity={() => deleteOportunity(opportunity.id)}
                 />

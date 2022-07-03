@@ -83,8 +83,6 @@ const Contact = () => {
             <DataGrid
                 rows={opportunityTypes}
                 columns={columns}
-                pageSize={5}
-                rowsPerPageOptions={[5]}
                 disableSelectionOnClick
             />
             </Body>
